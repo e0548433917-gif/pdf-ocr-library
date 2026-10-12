@@ -12,3 +12,8 @@
 ## היה חסר (נפתר ב-01:00)
 * הפרסום הראשון נכשל: נדרש לפחות צילום מסך דרך הקלט screenshots של Otzaria/otzaria-plugin-validator@v1 ב-.github/workflows/publish.yml. יש לבדוק בתיעוד הפעולה את פורמט הקלט, להוסיף צילום (למשל מסך "טעינת תיקייה") ל-docs/screenshots/, לעדכן את ה-workflow ולדחוף ל-main.
 * אחרי הצלחה ייווצר GitHub Release v4.0.1 עם קובץ ה-.otzplugin.
+
+## מאגר נפרד (2026-10-12)
+* ספריית PDF+OCR (com.chadbedera.pdfocrlibrary) עברה למאגר משלה: e0548433917-gif/pdf-ocr-library (ענף main), כדי שדף הגרסאות שלה יהיה נפרד מ„צופה PDF+OCR“.
+* הצופה (com.chadbedera.pdfviewer) ממשיך במאגר e0548433917-gif/pdf-viewer, ענף viewer-3.3.3.
+* הפרסום לחנות דורש את הסודות OTZARIA_USER ו-OTZARIA_PASSWORD במאגר החדש.
