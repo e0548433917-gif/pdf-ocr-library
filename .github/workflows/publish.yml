@@ -94,12 +94,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAG: ${{ steps.meta.outputs.tag }}
+          PLUGIN_FILE: ${{ steps.otzaria.outputs.plugin-file }}
         run: |
           if [[ "$GITHUB_REF" != "refs/heads/main" ]]; then
             echo "ענף בדיקה ($GITHUB_REF) - בלי Release"
             echo "exists=true" >> "$GITHUB_OUTPUT"
           elif gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "ה-Release $TAG כבר קיים - מדלג על יצירה"
+            echo "ה-Release $TAG כבר קיים - מדלג על יצירה (ומצרף את החבילה אם חסרה)"
+            if [[ -n "$PLUGIN_FILE" && -f "$PLUGIN_FILE" ]]; then gh release upload "$TAG" "$PLUGIN_FILE" --clobber --repo "$GITHUB_REPOSITORY"; fi
             echo "exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "ה-Release $TAG עדיין לא קיים"
@@ -146,7 +148,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.meta.outputs.tag }}
-          name: צופה PDF+OCR ${{ steps.meta.outputs.version }}
+          name: ספריית PDF+OCR ${{ steps.meta.outputs.version }}
           draft: false
           prerelease: false
           files: ${{ steps.otzaria.outputs.plugin-file }}
